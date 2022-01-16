@@ -8,12 +8,13 @@
 
     <hr class="sidebar-divider my-0" />
     <li class="nav-item  ">
-        <a class="nav-link" href=" ">
+        <a class="nav-link" href="{{ route('dashboard')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
     <hr class="sidebar-divider" />
     <div class="sidebar-heading">Features</div>
+   @can('admin')
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
             aria-expanded="true" aria-controls="collapseBootstrap">
@@ -29,6 +30,7 @@
             </div>
         </div>
     </li>
+
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
             aria-controls="collapseForm">
@@ -42,3 +44,18 @@
             </div>
         </div>
     </li>
+    @elsecan('author')
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
+            aria-controls="collapseForm">
+            <i class="fab fa-fw fa-wpforms"></i>
+            <span>Post</span>
+        </a>
+        <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Your Post</h6>
+                <a class="collapse-item" href="{{ route('dashboard.roleprivilige') }}">Post</a>
+            </div>
+        </div>
+    </li>
+    @endcan

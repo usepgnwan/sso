@@ -21,7 +21,7 @@ class UserController extends Controller
     }
     public function index(Request $request)
     {
-
+        $this->authorize('view data');
         $data = $this->user->get();
         $role = $this->role->get();
         $title = 'Data User';

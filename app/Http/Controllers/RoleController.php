@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -19,7 +20,11 @@ class RoleController extends Controller
     public function index(Request $request)
     {
         // $d = 'create data';
-        // $data = User::find(1)->checkPrivilige($d);
+        // $d = "author";
+        // $data = User::find(1)->hasRole($d);
+        // return response()->json($data);
+        // die;
+        $this->authorize('view data');
         $data = $this->role->get();
         $title = 'Data Role';
         if ($request->ajax()) {

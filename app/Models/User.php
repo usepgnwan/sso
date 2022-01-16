@@ -56,4 +56,12 @@ class User extends Authenticatable
     {
         return $this->role->privileges()->where('description', $chek)->first() ?: false;
     }
+
+    public function hasRole($role)
+    {
+        if ($this->role->description == $role) {
+            return true;
+        }
+        return false;
+    }
 }

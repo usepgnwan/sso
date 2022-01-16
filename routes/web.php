@@ -20,15 +20,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return 'haala';
+    return view('blog_layout.content');
 });
+
 
 Route::prefix('dashboard')->group(function () {
     Route::get('/', [DasboardController::class, 'index'])->name('dashboard')->middleware('auth');
-    Route::get('role', [RoleController::class, 'index'])->name('dashboard.role');
-    Route::get('privilege', [PrivilegeController::class, 'index'])->name('dashboard.privilege');
-    Route::get('user', [UserController::class, 'index'])->name('dashboard.user');
-    Route::get('privilige-management', [RolePriviligeController::class, 'index'])->name('dashboard.roleprivilige');
+    Route::middleware('auth', 'role:admin')->group(function () {
+        Route::get('role', [RoleController::class, 'index'])->name('dashboard.role');
+        Route::get('privilege', [PrivilegeController::class, 'index'])->name('dashboard.privilege');
+        Route::get('user', [UserController::class, 'index'])->name('dashboard.user');
+        Route::get('privilige-management', [RolePriviligeController::class, 'index'])->name('dashboard.roleprivilige');
+    });
 });
 
 Route::prefix('auth')->group(function () {

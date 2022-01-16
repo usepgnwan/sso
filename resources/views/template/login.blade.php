@@ -60,7 +60,6 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="font-weight-bold small" href=" ">Create an Account!</a>
                     <a class="font-weight-bold small" href="{{url('/')}}">Back to home</a>
                   </div>
                   <div class="text-center">

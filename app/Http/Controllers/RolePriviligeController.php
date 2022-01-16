@@ -22,7 +22,7 @@ class RolePriviligeController extends Controller
     }
     public function index(Request $request)
     {
-
+        $this->authorize('view data');
         $role = $this->role->get();
         $privilege = $this->privilege->get();
         // dd($privilege);

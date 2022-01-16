@@ -24,6 +24,10 @@ class PrivilegeSeed extends Seeder
                 'last_update' => now(),
             ],
             [
+                'description' => 'update data',
+                'last_update' => now(),
+            ],
+            [
                 'description' => 'delete data',
                 'last_update' => now(),
             ],

@@ -19,6 +19,7 @@ class PrivilegeController extends Controller
     {
         // $d = 'create data';
         // $data = User::find(1)->checkPrivilige($d);
+        $this->authorize('view data');
         $data = $this->privilege->get();
         $title = 'Data Privilege';
         if ($request->ajax()) {

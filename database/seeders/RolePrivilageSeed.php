@@ -18,6 +18,6 @@ class RolePrivilageSeed extends Seeder
         $admin->privileges()->attach([1, 2, 3, 4, 5]);
 
         $staff = Role::where('description', 'author')->first();
-        $staff->privileges()->attach([1, 2, 3, 4]);
+        $staff->privileges()->attach([1, 2]);
     }
 }
