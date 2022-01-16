@@ -38,7 +38,7 @@
         <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Management Previlege</h6>
-                <a class="collapse-item" href="form_basics.html">Role Previlege</a>
+                <a class="collapse-item" href="{{ route('dashboard.roleprivilige') }}">Role Previlege</a>
             </div>
         </div>
     </li>

@@ -23,7 +23,7 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'password' =>  bcrypt('password'), // password
             'last_update' => now(),
-            'role_id' => mt_rand(1, 3),
+            'role_id' => mt_rand(1, 2),
         ];
     }
 

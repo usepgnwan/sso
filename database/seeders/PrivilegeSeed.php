@@ -34,12 +34,7 @@ class PrivilegeSeed extends Seeder
             [
                 'description' => 'publish data',
                 'last_update' => now(),
-            ],
-            [
-                'description' => 'unpublish data',
-                'last_update' => now(),
-            ],
-
+            ]
         ];
 
         foreach ($data as $d) {

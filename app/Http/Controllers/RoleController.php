@@ -61,7 +61,7 @@ class RoleController extends Controller
             'description_role' => 'required|unique:roles,description,' . $id . ''
         ]);
         if ($validate->fails()) {
-            return response()->json(['status' => false, 'msg' => 'gagal veriksa kembali form', 'data' => $validate->errors()]);
+            return response()->json(['status' => false, 'msg' => 'gagal periksa kembali form', 'data' => $validate->errors()]);
         }
         if ($check) {
             $data = [
@@ -84,7 +84,7 @@ class RoleController extends Controller
             return response()->json(['status' => false, 'msg' => 'gagal veriksa kembali form', 'data' => $validate->errors()]);
         }
 
-        $role = Role::Create(['description' => $request->description_role]);
+        $role = Role::Create(['description' => $request->description_role, 'last_update' => now()]);
         return response()->json(['status' => true, 'msg' => 'sukses simpan data', 'data' => $role], Response::HTTP_OK);
     }
     public function destroy($id)

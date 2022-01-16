@@ -4,16 +4,12 @@
 <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{$title}}</h1>
-
     </div>
 
     <!-- Row -->
     <div class="row">
         <!-- Datatables -->
         <div class="col-lg-12">
-            <div class="from-group mb-2">
-                <button class="btn btn-primary" id="creatData" value="new">Tambah Data</button>
-            </div>
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <!-- <h6 class="m-0 font-weight-bold text-primary">DataTables</h6> -->

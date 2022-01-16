@@ -14,6 +14,7 @@
     <link href="{{ asset('file/vendor/fontawesome-free/css/all.min.css'); }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('file/vendor/bootstrap/css/bootstrap.min.css'); }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('file/css/ruang-admin.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('file/select-type/css/bootstrap-select.min.css'); }}" rel="stylesheet" type="text/css" />
 
     <script src="{{ asset('file/vendor/jquery/jquery.min.js'); }}"></script>
     <script src="{{ asset('file/vendor/bootstrap/js/bootstrap.bundle.min.js'); }}"></script>
@@ -21,6 +22,7 @@
     <!-- Page level plugins -->
     <script src="{{ asset('file/vendor/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{ asset('file/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{ asset('file/select-type/js/bootstrap-select.min.js')}}"></script>
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
         integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="

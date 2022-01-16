@@ -15,7 +15,7 @@ class RolePrivilageSeed extends Seeder
     public function run()
     {
         $admin = Role::where('description', 'admin')->first();
-        $admin->privileges()->attach([1, 2, 3, 4, 5, 6]);
+        $admin->privileges()->attach([1, 2, 3, 4, 5]);
 
         $staff = Role::where('description', 'author')->first();
         $staff->privileges()->attach([1, 2, 3, 4]);

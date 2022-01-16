@@ -14,8 +14,14 @@ class CreateRolePrivilegeTable extends Migration
     public function up()
     {
         Schema::create('role_privilege', function (Blueprint $table) {
-            $table->foreignId('privilege_id')->constrained()->onUpdate('cascade');
-            $table->foreignId('role_id')->constrained()->onUpdate('cascade');
+            $table->foreignId('privilege_id')
+                ->constrained()
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreignId('role_id')
+                ->constrained()
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 
