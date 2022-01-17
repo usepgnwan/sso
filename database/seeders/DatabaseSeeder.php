@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             UserSeed::class,
             RoleSeed::class,
             PrivilegeSeed::class,
-            RolePrivilageSeed::class
+            RolePrivilageSeed::class,
+            PostSeed::class
         ]);
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DasboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\PrivilegeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RolePriviligeController;
@@ -19,9 +20,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('blog_layout.content');
-});
+Route::get('/', [PostController::class, 'blog']);
+Route::get('blog/{post:slug}', [PostController::class, 'detail'])->name('blog');
 
 
 Route::prefix('dashboard')->group(function () {

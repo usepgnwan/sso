@@ -1,5 +1,5 @@
 
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/')}}">
         <div class="sidebar-brand-icon">
             <img src="{{asset('file/img/logo/logo2.png');}}" />
         </div>
@@ -44,18 +44,21 @@
             </div>
         </div>
     </li>
-    @elsecan('author')
+    @endcan
+
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapspost" aria-expanded="true"
             aria-controls="collapseForm">
             <i class="fab fa-fw fa-wpforms"></i>
             <span>Post</span>
         </a>
-        <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+        <div id="collapspost" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Your Post</h6>
                 <a class="collapse-item" href="{{ route('dashboard.roleprivilige') }}">Post</a>
+                @can('admin')
+                    <a class="collapse-item" href="{{ route('dashboard.roleprivilige') }}">Post Publish</a>
+                @endcan
             </div>
         </div>
     </li>
-    @endcan
