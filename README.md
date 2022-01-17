@@ -11,6 +11,15 @@
            NOTE: saat menggunakan seeder user, email harus di ubah menjadi @gmail.com , karena saat login menggunakan validasi email:dns
     atau menggunakan mysql database yg sudah di sediakan :
     folder db_mysql/db_sso.sql
+        Akun:
+        admin user : 
+            beier.micaela@gmail.com
+            password
+        author user :
+            kohler.hyman@gmail.com
+            password
+            hstehr@gmail.com
+            password
 ## SS ROLE ADMIN 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://github.com/usepgnwan/sso/blob/main/public/images/UseCaseDiagram1.jpg" width="400"></a></p>
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://github.com/usepgnwan/sso/blob/main/public/images/UseCaseDiagram1.jpg" width="400"></a></p>
