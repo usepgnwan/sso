@@ -10,5 +10,6 @@ class DasboardController extends Controller
     {
         $title = 'Selamat Datang, ' . auth()->user()->name;
         return view('layouts.dashboard', compact('title'));
+        // return response()->json(session()->get('user.id'));
     }
 }

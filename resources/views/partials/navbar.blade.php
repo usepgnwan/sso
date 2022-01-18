@@ -55,9 +55,9 @@
         <div id="collapspost" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Your Post</h6>
-                <a class="collapse-item" href="{{ route('dashboard.roleprivilige') }}">Post</a>
+                <a class="collapse-item" href="{{ route('dashboard.blog') }}">Post</a>
                 @can('admin')
-                    <a class="collapse-item" href="{{ route('dashboard.roleprivilige') }}">Post Publish</a>
+                    <a class="collapse-item" href="{{ route('dashboard.blog.publish') }}">Post Publish</a>
                 @endcan
             </div>
         </div>

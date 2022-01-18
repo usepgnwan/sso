@@ -22,11 +22,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PostController::class, 'blog']);
 Route::get('blog/{post:slug}', [PostController::class, 'detail'])->name('blog');
+Route::post('post/tambah', [PostController::class, 'store'])->name('post.tambah');
 
 
 Route::prefix('dashboard')->group(function () {
     Route::get('/', [DasboardController::class, 'index'])->name('dashboard')->middleware('auth');
+    Route::get('/blog', [PostController::class, 'index'])->name('dashboard.blog')->middleware('auth');
     Route::middleware('auth', 'role:admin')->group(function () {
+        Route::get('/blog/publish', [PostController::class, 'publish_post'])->name('dashboard.blog.publish');
         Route::get('role', [RoleController::class, 'index'])->name('dashboard.role');
         Route::get('privilege', [PrivilegeController::class, 'index'])->name('dashboard.privilege');
         Route::get('user', [UserController::class, 'index'])->name('dashboard.user');
