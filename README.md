@@ -20,13 +20,18 @@
             password
             hstehr@gmail.com
             password
+      
+
+<p>  <img src="https://github.com/usepgnwan/sso/blob/main/public/images/front.jpg" width="1000"> </p> 
 ## SS ROLE ADMIN 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://github.com/usepgnwan/sso/blob/main/public/images/UseCaseDiagram1.jpg" width="400"></a></p>
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://github.com/usepgnwan/sso/blob/main/public/images/UseCaseDiagram1.jpg" width="400"></a></p>
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://github.com/usepgnwan/sso/blob/main/public/images/UseCaseDiagram1.jpg" width="400"></a></p>
+<p><img src="https://github.com/usepgnwan/sso/blob/main/public/images/admin_dashboard.jpg" width="1000"></p> 
+<p><img src="https://github.com/usepgnwan/sso/blob/main/public/images/admin_role.jpg" width="1000"></p> 
+<p><img src="https://github.com/usepgnwan/sso/blob/main/public/images/admin_user.jpg" width="1000"></p> 
+<p><img src="https://github.com/usepgnwan/sso/blob/main/public/images/admin_privilege.jpg" width="1000"></p>  
+<p><img src="https://github.com/usepgnwan/sso/blob/main/public/images/admin_role_privilige.jpg" width="1000"></p> 
 
- 
-
+## SS ROLE AUTHOR 
+<p><img src="https://github.com/usepgnwan/sso/blob/main/public/images/author_dashboard.jpg" width="1000"></p> 
  
 Terima Kasih
 
