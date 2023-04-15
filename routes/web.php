@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PostController::class, 'blog']);
+Route::get('/', [PostController::class, 'blog'])->name('default');
 Route::get('blog/{post:slug}', [PostController::class, 'detail'])->name('blog');
 Route::post('post/tambah', [PostController::class, 'store'])->name('post.tambah');
 
