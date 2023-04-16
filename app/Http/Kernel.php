@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         // midleware role
         'role' => \App\Http\Middleware\CheckRole::class,
+        'responejson' => \App\Http\Middleware\responjson::class,
     ];
 }

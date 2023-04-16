@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\ApiUserLogin;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PrivilegeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RolePriviligeController;
 use App\Http\Controllers\UserController;
@@ -27,3 +29,11 @@ Route::resource('user', UserController::class);
 Route::resource('privilige-management', RolePriviligeController::class);
 Route::resource('post', PostController::class);
 Route::delete('privilige-management/{id_role}/{id_privilige}', [RolePriviligeController::class, 'deletPrivilege'])->name('privilige_management.delete_rp');
+
+Route::prefix('auth')->group(function(){
+    Route::post('/login', [ApiUserLogin::class,'login']); 
+});
+
+Route::group(['middleware' => 'responejson'], function () {
+    Route::get('privilege/test', [PrivilegeController::class, 'test'])->name('test.prev')->middleware(['auth:api']);
+});
