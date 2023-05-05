@@ -47,11 +47,7 @@ migration passport will be created, and migrate to add to table on database:
 ```
 php artisan migrate
 ```
-Next, you should run 
-```
-the passport:install
-```
-install all package passport :
+Next, you should run install all package passport :
 ```
 php artisan passport:install
 ```
