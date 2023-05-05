@@ -5,8 +5,10 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Http\Response;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Throwable;
 
@@ -52,11 +54,37 @@ class Handler extends ExceptionHandler
          * REGISTER HANDLER FOR GATE - CHECKING USER NO HAVE ACCESS FOR ACCESS FUNCTION ON GATE API
          */ 
         $this->renderable(function (Exception $exception, $request) {
-            if ( $exception instanceof Exception && in_array('api',$request->route()->getAction('middleware')) && ! empty(auth()->user())) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Not authenticated / Acces Denied !'
-                ], Response::HTTP_UNAUTHORIZED);
+           if( !is_null($request->route())){ 
+                if ( $exception instanceof Exception && in_array('api',$request->route()->getAction('middleware')) && ! empty(auth()->user())) {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Not authenticated / Acces Denied !'
+                    ], Response::HTTP_UNAUTHORIZED);
+                } 
+             
+            }
+        });
+
+        $this->renderable(function (Throwable $exception, $request) {
+            if( $request->is('api/*')){
+                if ($exception instanceof ModelNotFoundException) {
+                    $model = strtolower(class_basename($exception->getModel())); 
+                    return response()->json([
+                            'status' => false,
+                            'error' => 'Model '. $model .' not found'
+                            ], Response::HTTP_NOT_FOUND);
+                }   
+                if ($exception instanceof NotFoundHttpException) {
+                    return response()->json([
+                        'status' => false,
+                         'error' => 'Resource not found'
+                     ], Response::HTTP_NOT_FOUND);  
+                    }
+            }else{
+                if ($exception->getStatusCode() == 404) {
+                    $title = $exception->getStatusCode() . ' - Page Not Found ';
+                    return response()->view('errors.' . '404', ["title"=>$title], 404);
+                }
             }
         });
     }
