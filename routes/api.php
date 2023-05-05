@@ -30,6 +30,7 @@ Route::resource('privilige-management', RolePriviligeController::class);
 Route::resource('post', PostController::class);
 Route::delete('privilige-management/{id_role}/{id_privilige}', [RolePriviligeController::class, 'deletPrivilege'])->name('privilige_management.delete_rp');
 
+// passport api
 Route::prefix('auth')->group(function(){
     Route::post('/login', [ApiUserLogin::class,'login']); 
 });

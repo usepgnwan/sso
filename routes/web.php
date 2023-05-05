@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DasboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PrivilegeController;
 use App\Http\Controllers\RoleController;
@@ -34,6 +35,9 @@ Route::prefix('dashboard')->group(function () {
         Route::get('privilege', [PrivilegeController::class, 'index'])->name('dashboard.privilege');
         Route::get('user', [UserController::class, 'index'])->name('dashboard.user');
         Route::get('privilige-management', [RolePriviligeController::class, 'index'])->name('dashboard.roleprivilige');
+        Route::get('menu', [MenuController::class, 'index'])->name('dashboard.menu');
+        Route::get('list_menu/{id}', [MenuController::class, 'list_menu'])->name('dashboard.list_menu');
+        Route::post('save_menu', [MenuController::class, 'save'])->name('dashboard.save_menu');
     });
 });
 
