@@ -102,9 +102,10 @@ class AuthServiceProvider extends ServiceProvider
     }
 }
 ```
+
 in config/auth.php configuration file, set the driver option of the api authentication guard to passport. This will instruct your application to use Passport's TokenGuard when authenticating incoming API requests:
 
-``
+```
 'guards' => [
     'web' => [
         'driver' => 'session',
