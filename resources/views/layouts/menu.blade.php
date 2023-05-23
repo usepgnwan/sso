@@ -1,6 +1,6 @@
-@extends('template.admin')
+{{-- @extends('template.admin')
 
-@section('container')
+@section('container') --}}
     <div class="container-fluid" id="container-wrapper">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">menu</h1>
@@ -15,9 +15,8 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-12 ccccc">
-
-                                <select class="cst-select2" data-width="100%" name="user[]" id="cst-select2">
+                            <div class="col-md-12"> 
+                                <select class="cst-select2" data-width="100%" name="user[]">
                                     @foreach ($levelaccess as $v)
                                         <option value="{{ $v['id'] }}">{{ $v['description'] }}</option>
                                     @endforeach
@@ -45,7 +44,8 @@
         </div>
     </div>
 
-    <script>
+    <script type="text/javascript">
+    $(document).ready(function(){
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -64,7 +64,7 @@
                 },
                 complete: function(data) {  
                     $('#output').val(JSON.stringify($('#nestable').nestable('serialize')));
-                    console.log($('#nestable').nestable('serialize'))
+                   
                 }
             });
         });
@@ -85,5 +85,6 @@
                 }
             });
         });
+    });
     </script>
-@endsection
+{{-- @endsection --}}

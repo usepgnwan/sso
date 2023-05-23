@@ -1,6 +1,6 @@
-@extends('template.admin')
+{{-- @extends('template.admin')
 
-@section('container')
+@section('container') --}}
 <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{$title}}</h1>
@@ -64,7 +64,7 @@
                 <form action="" name="form-data" id="form-data" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="">Role</label>
-                        <select name="role" id="role" class="form-control">
+                        <select name="role" id="role" class="cst-select2">
                             <option value="0">- Pilih -</option>
                             @foreach ($role as $r)
                             <option value="{{$r->id}}">{{$r->description}}</option>
@@ -73,8 +73,8 @@
                     </div>
                     <div class="form-group">
                         <label for="">Privilege</label>
-                        <select name="privilege[]" id="privilege" class="selectpicker form-control"
-                            data-live-search="true" multiple>
+                        <select name="privilege[]" id="privilege" class="cst-select2 form-control"
+                             multiple>
                             @foreach ($privilege as $p)
                             {{-- <option data-tokens="{{$p->id}}">{{$p->description}}</option> --}}
                             <option value="{{$p->id}}">{{$p->description}}</option>
@@ -138,7 +138,7 @@
     </div>
 
     <script>
-        let table;
+    
         $(document).ready(function () {
             $.ajaxSetup({
                 headers: {
@@ -149,7 +149,7 @@
             table = $('#dataTable').DataTable({
                 prossecing: true,
                 serverSide: true,
-                ajax: "{{ route('dashboard.roleprivilige');}}",
+                ajax: "{{ route('dashboard.roleprivilige',['opt'=>'data'])}}",
                 columns: [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                     { data: 'description', name: 'description' },
@@ -209,7 +209,7 @@
             url = "{{ route('privilige_management.delete_rp', ['id_role'=>':id_role', 'id_privilige'=>':id_privilige'])}}";
             url = url.replace(":id_role", id_role);
             url = url.replace(":id_privilige", id_privilige);
-
+            $('#modal-data').modal('hide');
             swal({
                 title: 'Yakin',
                 text: 'Hapus Data',
@@ -273,4 +273,4 @@
         })
     </script>
 
-    @endsection
+    {{-- @endsection --}}

@@ -80,10 +80,36 @@ class Handler extends ExceptionHandler
                          'error' => 'Resource not found'
                      ], Response::HTTP_NOT_FOUND);  
                     }
-            }else{
-                if ($exception->getStatusCode() == 404) {
-                    $title = $exception->getStatusCode() . ' - Page Not Found ';
-                    return response()->view('errors.' . '404', ["title"=>$title], 404);
+            }else{     
+                // dd($request->ajax());
+                if ($exception instanceof \Symfony\Component\HttpKernel\Exception\HttpException) {
+                   
+                    $statusCode = $exception->getStatusCode();
+                    if($request->ajax() && $statusCode == 404){
+                        return response()->json([
+                            'status' => false,
+                             'error' => 'Resource not found'
+                         ], Response::HTTP_NOT_FOUND);  
+                    }
+                    $title = $statusCode . ' - ' . ( $statusCode == 404 ? "Page Not Found" :  $exception->getMessage());
+                    $error = ( $statusCode == 404 ? "Page Not Found" :  $exception->getMessage());
+                    if (view()->exists("errors.{$statusCode}")) {
+                        return response()->view("errors.{$statusCode}", ["title"=>$title,"error"=>$error], $statusCode);
+                    }
+                } 
+                if(env("APP_ENV") == 'production'){ 
+                    $statusCode = 500;
+                    $title = $statusCode . ' - Internal Server Error ';
+                    $error = [];
+                    $error["message"] = $exception->getMessage(); 
+                    $error["code"] = $exception->getCode(); 
+                    $error["file"] = $exception->getFile(); 
+                    $error["line"] = $exception->getLine(); 
+                    $error["trace"] = $exception->getTrace(); 
+                    $error = collect($error);
+                    // dump($error); 
+
+                    return response()->view("errors.{$statusCode}", ["title"=>$title,"error"=>$error], $statusCode);
                 }
             }
         });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use Carbon\Carbon;
+use GlobalFunc;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
@@ -13,11 +14,13 @@ use Yajra\DataTables\Facades\DataTables;
 class RoleController extends Controller
 {
     protected $role;
-    public function __construct(Role $role)
+    private $global;
+    public function __construct(Role $role, GlobalFunc $global)
     {
         $this->role = $role;
+        $this->global = $global;
     }
-    public function index(Request $request)
+    public function index(Request $request, $opt = null)
     {
         // $d = 'create data';
         // $d = "author";
@@ -25,9 +28,12 @@ class RoleController extends Controller
         // return response()->json($data);
         // die;
         $this->authorize('view data');
+        if(!$request->ajax()){ 
+            return $this->global->check_url($request);
+        }
         $data = $this->role->get();
         $title = 'Data Role';
-        if ($request->ajax()) {
+        if ($request->ajax() && $opt == 'data') {
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
@@ -44,7 +50,7 @@ class RoleController extends Controller
         }
         // return response()->json($data);
 
-        return view('layouts.role', compact('data', 'title'));
+        return view('layouts.role', compact('data', 'title'))->render();
     }
 
     public function show($id)

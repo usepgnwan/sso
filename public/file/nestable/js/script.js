@@ -3,11 +3,8 @@ $(document).ready(function () {
     
     var updateOutput = function () {
         
-       let data = $('#nestable').nestable('serialize');
-        $.each(data, function(i,e){
-            
-            console.log(data[i]);
-        });
+       let data = $('#nestable').nestable('serialize'); 
+     
         $('#output').val(JSON.stringify($('#nestable').nestable('serialize')));
     };
 
@@ -71,26 +68,5 @@ $(document).ready(function () {
     $("body").delegate("input[name='navigation_url']", "change paste keyup", function (e) {
         $(this).closest(".dd-item").data("url", $(this).val());
     });   
-
-      
-    function loaded(selector, callback) {
-        //trigger after page load.
-        jQuery(function () {
-            callback(jQuery(selector));
-        });
-        var parentSelector = "* > " + selector;
-        //trigger after page update eg ajax event or jquery insert.
-        jQuery(document).on('DOMNodeInsertedIntoDocument', parentSelector, function (e) {
-            callback(jQuery(this).find(selector));
-        });
-    }
-
-    loaded('.cst-select2', function(e){
-        $.each(e,function(i,v){ 
-            let n = "." + v.className;
-            $(v).data('live-search',true);
-            $(v).selectpicker();
-        });  
-    });
 });
 

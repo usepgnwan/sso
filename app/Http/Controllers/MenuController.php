@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\TableAcessUserMenu;
 use App\Models\TableUserMenu;
+use GlobalFunc;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -13,24 +14,29 @@ class MenuController extends Controller
 {
     protected $usermenu;
     protected $accessmenu;
-    public function __construct(TableUserMenu $usermenu,TableAcessUserMenu $accessmenu){
+    protected $global;
+    public function __construct(TableUserMenu $usermenu,TableAcessUserMenu $accessmenu,GlobalFunc $global){
         $this->usermenu = $usermenu;
         $this->accessmenu = $accessmenu;
+        $this->global = $global;
     }
     public function index(Request $request){
         
-         $list_menu = $this->__menu($request);
+        if(!$request->ajax()){
+            return $this->global->check_url($request);
+        }
+         $list_menu = [];
          $levelaccess = Role::all();
-         return view('layouts.menu', compact('list_menu','levelaccess'));
+         return view('layouts.menu', compact('list_menu','levelaccess'))->render();
     }
 
     public function list_menu(Request $request,$id){   
         // $list_menu = $this->__menu($request);
         // return  $list_menu;
         // $menu =  DB::table('table_usermenu')->get();
-        if($request->ajax()){
+        // if($request->ajax()){
             return $this->__menus($request->id);
-        } 
+        // } 
     }
 
     /**

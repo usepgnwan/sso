@@ -38,15 +38,18 @@ class MenuMiddleware
 
     function __admin_menu($parent_id = 0,$first=true, $root=0){
         $LEVELID = !empty(auth()->user()) ? auth()->user()->role->id : 0;
-        $rows = \DB::table('table_usermenu')
-        ->leftJoin('table_access_menu', function($join) use ($LEVELID){
-            $join->on('table_usermenu.id', '=' , 'table_access_menu.table_usermenu_id');
-            $join->where('role_id', '=' , $LEVELID);
+        $rows = \DB::table('table_usermenu as um')
+        ->select('um.*','am.is_access','am.is_create','am.is_delete', 'am.is_edit','am.is_approve', 'am.is_reject')
+        ->join('table_access_menu as am', function($join) use ($LEVELID){
+            $join->on('um.id', '=' , 'am.table_usermenu_id');
+            $join->where('am.role_id', '=' , $LEVELID);
+            $join->where('am.is_access', '=' , 1);
         })
-        ->where('parent_id',$parent_id)
-        ->where('status',1)
-        ->whereIn('type',['menu','devider'])
-        ->get();
+        ->where('um.parent_id',$parent_id)
+        ->where('um.status',1)
+        ->whereIn('um.type',['menu','devider'])
+        ->orderBy('um.weight','asc')
+        ->get();   
         $html = '';
         if(count($rows)>0){
             foreach($rows as $k => $v){
@@ -70,12 +73,12 @@ class MenuMiddleware
                 $html .= $this->__admin_menu($v['id'],$first,$v['children']);
             }
              
-        }else if($v['type'] == 'menu'){ 
+        }else if($v['type'] == 'menu'){
+            $url = url($v['url']);
             if($v['children'] > 0){  
                 if($first == true){
                     $html .= '<li class="nav-item ">'; 
                 }
-                $url = $v['url'];
                 $id = preg_replace('/\s+/', '-', $v['menu']);
                 $parent_colapse =  'class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse-'. $id .'"
                 // aria-expanded="true" aria-controls="collapse-'. $id .'"' ;
@@ -94,7 +97,7 @@ class MenuMiddleware
                 if($first == true){
                     $html .= '<li class="nav-item ">';
                 } 
-                $html .= '<a class="nav-link" href="'. $v['url'] .'"> <i class="fas fa-fw fa-tachometer-alt"></i></span>'. $v['menu'] .'</span></a>'; 
+                $html .= '<a class="nav-link spa-link" href="'. $url .'"> <i class="fas fa-fw fa-tachometer-alt"></i></span>'. $v['menu'] .'</span></a>'; 
                 if($first == true){
                     $html .=  '</li>';
                 }

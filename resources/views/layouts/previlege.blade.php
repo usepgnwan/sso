@@ -1,6 +1,6 @@
-@extends('template.admin')
+{{-- @extends('template.admin')
 
-@section('container')
+@section('container') --}}
 <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{$title}}</h1>
@@ -72,7 +72,7 @@
 </div>
 
 <script>
-    let table;
+    // let table;
     $(document).ready(function () {
         $.ajaxSetup({
             headers: {
@@ -80,10 +80,10 @@
             }
         });
         // $('#dataTable').DataTable(); // ID From dataTable
-        table = $('#dataTable').DataTable({
+        $('#dataTable').DataTable({
             prossecing: true,
             serverSide: true,
-            ajax: "{{ route('dashboard.privilege') }}",
+            ajax: "{{ route('dashboard.privilege',['opt'=>'data']) }}",
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                 { data: 'description', name: 'description' },
@@ -94,4 +94,4 @@
 
 </script>
 
-@endsection
+{{-- @endsection --}}

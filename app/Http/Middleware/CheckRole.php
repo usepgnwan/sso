@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 
 class CheckRole
@@ -21,6 +22,12 @@ class CheckRole
                 return $next($request);
             }
         }
+
+        // check role authenticate / can acces or not if condition is ajax or api
+        if($request->ajax()){
+            return response()->json([ 'status' => false, 'message' => 'Not authenticated / Acces Denied !'], 401);
+        }
+        
         return redirect()->route('dashboard');
     }
 }

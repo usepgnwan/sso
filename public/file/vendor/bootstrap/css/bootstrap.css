@@ -3654,6 +3654,10 @@ input[type="button"].btn-block {
   -webkit-transition: opacity 0.15s linear;
   transition: opacity 0.15s linear;
 }
+.fade.in {
+  opacity: 1;
+  transform: scale(1);
+}
 
 @media (prefers-reduced-motion: reduce) {
   .fade {
@@ -3663,7 +3667,7 @@ input[type="button"].btn-block {
 }
 
 .fade:not(.show) {
-  opacity: 0;
+  opacity: 100;
 }
 
 .collapse:not(.show) {
@@ -6618,6 +6622,7 @@ a.close.disabled {
   height: 100%;
   overflow: hidden;
   outline: 0;
+  padding: 10vh 0px 0px 40vh;
 }
 
 .modal-dialog {

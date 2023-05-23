@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Privilege;
 use App\Models\Role;
 use Carbon\Carbon;
+use GlobalFunc;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
@@ -15,19 +16,24 @@ class RolePriviligeController extends Controller
 
     protected $role;
     protected $privilege;
-    public function __construct(Role $role, Privilege $privilege)
+    private $global;
+    public function __construct(Role $role, Privilege $privilege, GlobalFunc $global)
     {
         $this->role = $role;
+        $this->global = $global;
         $this->privilege = $privilege;
     }
-    public function index(Request $request)
+    public function index(Request $request,$opt = null)
     {
         $this->authorize('view data');
         $role = $this->role->get();
         $privilege = $this->privilege->get();
         // dd($privilege);
+        if(!$request->ajax()){ 
+            return $this->global->check_url($request);
+        }
         $title = 'Data Role Management Privelage';
-        if ($request->ajax()) {
+        if ($request->ajax() && $opt == 'data') {
             return DataTables::of($role)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
@@ -47,7 +53,7 @@ class RolePriviligeController extends Controller
         }
         // return response()->json($data);
 
-        return view('layouts.role_privilige', compact('role', 'title', 'privilege'));
+        return view('layouts.role_privilige', compact('role', 'title', 'privilege'))->render();
     }
 
     public function store(Request $request)

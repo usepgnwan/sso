@@ -27,14 +27,15 @@ Route::post('post/tambah', [PostController::class, 'store'])->name('post.tambah'
 
 
 Route::prefix('dashboard')->group(function () {
-    Route::get('/', [DasboardController::class, 'index'])->name('dashboard')->middleware('auth');
+    Route::get('/', [DasboardController::class, 'parent'])->name('parent')->middleware('auth');
+    Route::get('/index/{id?}', [DasboardController::class, 'index'])->name('dashboard')->middleware('auth');
     Route::get('/blog', [PostController::class, 'index'])->name('dashboard.blog')->middleware('auth');
     Route::middleware('auth', 'role:admin')->group(function () {
         Route::get('/blog/publish', [PostController::class, 'publish_post'])->name('dashboard.blog.publish');
-        Route::get('role', [RoleController::class, 'index'])->name('dashboard.role');
-        Route::get('privilege', [PrivilegeController::class, 'index'])->name('dashboard.privilege');
+        Route::get('role/{opt?}', [RoleController::class, 'index'])->name('dashboard.role');
+        Route::get('privilege/{opt?}', [PrivilegeController::class, 'index'])->name('dashboard.privilege');
         Route::get('user', [UserController::class, 'index'])->name('dashboard.user');
-        Route::get('privilige-management', [RolePriviligeController::class, 'index'])->name('dashboard.roleprivilige');
+        Route::get('privilige-management/{opt?}', [RolePriviligeController::class, 'index'])->name('dashboard.roleprivilige');
         Route::get('menu', [MenuController::class, 'index'])->name('dashboard.menu');
         Route::get('list_menu/{id}', [MenuController::class, 'list_menu'])->name('dashboard.list_menu');
         Route::post('save_menu', [MenuController::class, 'save'])->name('dashboard.save_menu');

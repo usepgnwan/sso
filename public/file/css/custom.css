@@ -67,3 +67,22 @@
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+
+
+/* spinner */
+/* Background */
+
+.loader-container {
+    width: 100vw;
+    height: 15vh;
+    position: absolute;
+    background: url(../img/loaders.svg);
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.9; 
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+  } 

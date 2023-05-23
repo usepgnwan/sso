@@ -1,6 +1,6 @@
-@extends('template.admin')
+{{-- @extends('template.admin')
 
-@section('container')
+@section('container') --}}
 <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{$title}}</h1>
@@ -78,8 +78,9 @@
 </div>
 
 <script>
-    let table;
+    // let table;
     $(document).ready(function () {
+        console.log('hahaa')
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -89,7 +90,7 @@
         table = $('#dataTable').DataTable({
             prossecing: true,
             serverSide: true,
-            ajax: "{{ route('dashboard.role');}}",
+            ajax: "{{ route('dashboard.role',['opt'=>'data'])}}",
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                 { data: 'description', name: 'description' },
@@ -203,4 +204,4 @@
     })
 </script>
 
-@endsection
+{{-- @endsection --}}
