@@ -43,4 +43,8 @@ class PrivilegeController extends Controller
 
         return view('layouts.previlege', compact('data', 'title'))->render();
     }
+
+    public function test(){
+        echo "ok";
+    }
 }

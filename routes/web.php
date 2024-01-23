@@ -29,7 +29,7 @@ Route::post('post/tambah', [PostController::class, 'store'])->name('post.tambah'
 Route::prefix('dashboard')->group(function () {
     Route::get('/', [DasboardController::class, 'parent'])->name('parent')->middleware('auth');
     Route::get('/index/{id?}', [DasboardController::class, 'index'])->name('dashboard')->middleware('auth');
-    Route::get('/blog', [PostController::class, 'index'])->name('dashboard.blog')->middleware('auth');
+    Route::get('/blog/{opt?}', [PostController::class, 'index'])->name('dashboard.blog')->middleware('auth');
     Route::middleware('auth', 'role:admin')->group(function () {
         Route::get('/blog/publish', [PostController::class, 'publish_post'])->name('dashboard.blog.publish');
         Route::get('role/{opt?}', [RoleController::class, 'index'])->name('dashboard.role');

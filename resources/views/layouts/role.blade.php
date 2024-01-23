@@ -80,7 +80,6 @@
 <script>
     // let table;
     $(document).ready(function () {
-        console.log('hahaa')
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'

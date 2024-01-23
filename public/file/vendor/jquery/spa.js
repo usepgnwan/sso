@@ -2,7 +2,7 @@
      
     window.title = document.querySelector("title");
     window.webname = window.title.text;
-
+    console.log(window);
     var $ajaxMenuRequest = undefined;
     var pushstate = undefined;
     const KEY_COLOR_MODE = "assignment-color-mode";

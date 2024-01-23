@@ -36,5 +36,5 @@ Route::prefix('auth')->group(function(){
 });
 
 Route::group(['middleware' => 'responejson'], function () {
-    Route::get('privilege/test', [PrivilegeController::class, 'test'])->name('test.prev')->middleware(['auth:api']);
+    Route::get('privilege/test', [PrivilegeController::class, 'test'])->name('test.prev')->middleware(['auth:api','can:view data']);
 });

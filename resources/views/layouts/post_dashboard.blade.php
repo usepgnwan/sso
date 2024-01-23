@@ -1,6 +1,6 @@
-@extends('template.admin')
+{{-- @extends('template.admin')
 
-@section('container')
+@section('container') --}}
 <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{$title}}</h1>
@@ -11,11 +11,11 @@
     <div class="row">
         <!-- Datatables -->
         <div class="col-lg-12">
-            @can('author')
+            {{-- @can('author') --}}
                 <div class="from-group mb-2">
                     <button class="btn btn-primary" id="creatData" value="new">Tambah Data</button>
                 </div>
-            @endcan
+            {{-- @endcan --}}
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <!-- <h6 class="m-0 font-weight-bold text-primary">DataTables</h6> -->
@@ -72,6 +72,7 @@
             </div>
             <div class="modal-body">
                 <form action="" name="form-data" id="form-data" enctype="multipart/form-data">
+                    @csrf
                     <div class="form-group">
                         <label for="">Title</label>
                         {{-- <input type=" " class="form-control" name="id" value="{{session()->get('user.id')}}"> --}}
@@ -98,7 +99,7 @@
 </div>
 
 <script>
-    let table;
+    // let table;
     $(document).ready(function () {
         $.ajaxSetup({
             headers: {
@@ -109,7 +110,7 @@
         table = $('#dataTable').DataTable({
             prossecing: true,
             serverSide: true,
-            ajax: "{{ route('dashboard.blog');}}",
+            ajax: "{{ route('dashboard.blog',['opt'=>'data']);}}",
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex' },
                 { data: 'title', name: 'title' },
@@ -195,4 +196,4 @@
     })
 </script>
 
-@endsection
+{{-- @endsection --}}

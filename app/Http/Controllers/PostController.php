@@ -32,7 +32,7 @@ class PostController extends Controller
         return view('blog_layout.blog_detail', compact('posts'));
     }
 
-    public function index(Request $request)
+    public function index(Request $request, $opt = null)
     {
         $post = [];
         if (Gate::check('admin')) {
@@ -42,7 +42,7 @@ class PostController extends Controller
         };
 
         $title = 'Data Post';
-        if ($request->ajax()) {
+        if ($request->ajax() && $opt == 'data') {
             return DataTables::of($post)
                 ->addIndexColumn()
                 ->addColumn('status_publish', function ($row) {
